@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -62,7 +63,7 @@ public class ArticleDetailFragment extends Fragment implements
     // Use default locale format
     private SimpleDateFormat outputFormat = new SimpleDateFormat();
     // Most time functions can only handle 1902 - 2037
-    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2,1,1);
+    private GregorianCalendar START_OF_EPOCH = new GregorianCalendar(2, 1, 1);
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -110,7 +111,7 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+                             Bundle savedInstanceState) {
         mRootView = inflater.inflate(R.layout.fragment_article_detail, container, false);
         Toolbar toolbar = mRootView.findViewById(R.id.app_bar);
 
@@ -118,8 +119,6 @@ public class ArticleDetailFragment extends Fragment implements
         activity.setSupportActionBar(toolbar);
         activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-
 
 
 //        mDrawInsetsFrameLayout = (DrawInsetsFrameLayout)
@@ -219,8 +218,8 @@ public class ArticleDetailFragment extends Fragment implements
             return;
         }
 
-//        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
-//        TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
+        TextView titleView = (TextView) mRootView.findViewById(R.id.article_title);
+        TextView bylineView = (TextView) mRootView.findViewById(R.id.article_byline);
 //        bylineView.setMovementMethod(new LinkMovementMethod());
         TextView bodyView = (TextView) mRootView.findViewById(R.id.article_body);
 //
@@ -231,26 +230,26 @@ public class ArticleDetailFragment extends Fragment implements
 //            mRootView.setAlpha(0);
 //            mRootView.setVisibility(View.VISIBLE);
 //            mRootView.animate().alpha(1);
-//            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
-//            Date publishedDate = parsePublishedDate();
-//            if (!publishedDate.before(START_OF_EPOCH.getTime())) {
-//                bylineView.setText(Html.fromHtml(
-//                        DateUtils.getRelativeTimeSpanString(
-//                                publishedDate.getTime(),
-//                                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
-//                                DateUtils.FORMAT_ABBREV_ALL).toString()
-//                                + " by <font color='#ffffff'>"
-//                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
-//                                + "</font>"));
-//
-//            } else {
-//                // If date is before 1902, just show the string
-//                bylineView.setText(Html.fromHtml(
-//                        outputFormat.format(publishedDate) + " by <font color='#ffffff'>"
-//                        + mCursor.getString(ArticleLoader.Query.AUTHOR)
-//                                + "</font>"));
-//
-//            }
+            titleView.setText(mCursor.getString(ArticleLoader.Query.TITLE));
+            Date publishedDate = parsePublishedDate();
+            if (!publishedDate.before(START_OF_EPOCH.getTime())) {
+                bylineView.setText(Html.fromHtml(
+                        DateUtils.getRelativeTimeSpanString(
+                                publishedDate.getTime(),
+                                System.currentTimeMillis(), DateUtils.HOUR_IN_MILLIS,
+                                DateUtils.FORMAT_ABBREV_ALL).toString()
+                                + " by <font color='#388E3C'>"
+                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
+                                + "</font>"));
+
+            } else {
+                // If date is before 1902, just show the string
+                bylineView.setText(Html.fromHtml(
+                        outputFormat.format(publishedDate) + " by <font color='#388E3C'>"
+                                + mCursor.getString(ArticleLoader.Query.AUTHOR)
+                                + "</font>"));
+
+            }
             bodyView.setText(Html.fromHtml(mCursor.getString(ArticleLoader.Query.BODY).replaceAll("(\r\n|\n)", "<br />")));
             ImageLoaderHelper.getInstance(getActivity()).getImageLoader()
                     .get(mCursor.getString(ArticleLoader.Query.PHOTO_URL), new ImageLoader.ImageListener() {
