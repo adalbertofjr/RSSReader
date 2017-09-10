@@ -122,10 +122,10 @@ public class ArticleDetailFragment extends Fragment implements
         Toolbar toolbar = mRootView.findViewById(R.id.toolbar_detail);
         mToolbarTitle = mRootView.findViewById(R.id.toolbar_detail_title);
 
-        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        final AppCompatActivity activity = (AppCompatActivity) getActivity();
         activity.setSupportActionBar(toolbar);
-        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        activity.getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+//        activity.getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mPhotoView = mRootView.findViewById(R.id.photo);
 
@@ -185,16 +185,10 @@ public class ArticleDetailFragment extends Fragment implements
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                getActivity().onBackPressed();
-                return true;
-        }
-
         return super.onOptionsItemSelected(item);
     }
 
-//    private void updateStatusBar() {
+    //    private void updateStatusBar() {
 //        int color = 0;
 //        if (mPhotoView != null && mTopInset != 0 && mScrollY > 0) {
 //            float f = progress(mScrollY,
