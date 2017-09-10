@@ -112,7 +112,8 @@
         app:borderWidth="0dp"
         app:elevation="6dp"
         app:fabSize="normal"
-        app:pressedTranslationZ="12dp" />
+        app:pressedTranslationZ="12dp"
+        android:background="?selectableItemBackground"/>
 
 </android.support.design.widget.CoordinatorLayout>
 
