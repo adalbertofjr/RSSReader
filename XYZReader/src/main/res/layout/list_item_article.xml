@@ -8,6 +8,7 @@
     <!--suppress AndroidLintContentDescription -->
     <com.example.xyzreader.ui.DynamicHeightNetworkImageView
         android:id="@+id/thumbnail"
+        android:contentDescription="@string/photo"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginBottom="16dp"
