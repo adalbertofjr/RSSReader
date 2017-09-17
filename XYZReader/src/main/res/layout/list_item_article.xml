@@ -2,7 +2,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
+    android:layout_margin="4dp"
     android:background="?selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
@@ -10,6 +10,7 @@
     app:elevation="4dp">
 
     <LinearLayout
+        android:id="@+id/card_article"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -27,12 +28,13 @@
             android:id="@+id/article_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif-condensed"
             android:maxLines="2"
-            android:textColor="@color/primaryText"
+            android:textColor="@color/white"
             android:textSize="16sp" />
 
         <TextView
@@ -40,12 +42,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:fontFamily="sans-serif"
             android:maxLines="2"
-            android:textColor="@color/secondaryText"
+            android:textColor="@color/white"
             android:textSize="12sp" />
 
     </LinearLayout>
