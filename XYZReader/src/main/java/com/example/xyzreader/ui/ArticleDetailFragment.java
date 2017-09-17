@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.format.DateUtils;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,11 +84,6 @@ public class ArticleDetailFragment extends Fragment implements
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             mItemId = getArguments().getLong(ARG_ITEM_ID);
         }
-
-//        mIsCard = getResources().getBoolean(R.bool.detail_is_card);
-//        mStatusBarFullOpacityBottom = getResources().getDimensionPixelSize(
-//                R.dimen.detail_card_top_margin);
-//        setHasOptionsMenu(true);
     }
 
     public ArticleDetailActivity getActivityCast() {
@@ -126,11 +122,16 @@ public class ArticleDetailFragment extends Fragment implements
                     mToolbarTitle.animate().alpha(1).setDuration(300);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         activity.getWindow().setStatusBarColor(ContextCompat.getColor(activity, R.color.theme_primary_dark));
+
+                        float elevation = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 4,
+                                getActivity().getResources().getDisplayMetrics());
+                        appBarLayout.setElevation(elevation);
                     }
                 } else {
                     mToolbarTitle.animate().alpha(0).setDuration(300);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         activity.getWindow().setStatusBarColor(ContextCompat.getColor(activity, android.R.color.transparent));
+                        appBarLayout.setElevation(0f);
                     }
                 }
             }
